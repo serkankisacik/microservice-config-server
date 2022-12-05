@@ -11,10 +11,12 @@ server:
     port: 0
 spring:
     application:
-        name: rental-service
+        name: rental
+    config:
+        import: optional:classpath:.env[.properties]
     datasource:
-        password: torukobyte123
-        url: jdbc:postgresql://localhost:5432/rentacarRentaldb
+        password: 1071
+        url: jdbc:postgresql://localhost:5432/rentacardb
         username: postgres
     jpa:
         hibernate:
@@ -33,4 +35,6 @@ spring:
             key-serializer: org.apache.kafka.common.serialization.StringSerializer
             value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
         topic:
-            name: tbyte
+            name: rental_topics2
+    zipkin:
+        base-url: http://localhost:9411

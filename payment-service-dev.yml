@@ -13,8 +13,8 @@ spring:
     application:
         name: payment-service
     datasource:
-        password: torukobyte123
-        url: jdbc:postgresql://localhost:5432/rentacarPaymentdb
+        password: 1071
+        url: jdbc:postgresql://localhost:5432/rentacarpaymentdb
         username: postgres
     jpa:
         hibernate:
@@ -27,3 +27,19 @@ spring:
                     validation:
                         mode: none
         show-sql: true
+    kafka:
+        consumer:
+            auto-offset-reset: earliest
+            bootstrap-servers: localhost:9092
+            group-id: payment2
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            properties:
+                spring:
+                    json:
+                        trusted:
+                            packages: '*'
+            value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        topic:
+            name: payment_topics2
+    zipkin:
+        base-url: http://localhost:9411
